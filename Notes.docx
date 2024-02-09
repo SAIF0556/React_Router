@@ -1,0 +1,861 @@
+- Multi page applications has some disadvantages like slow loading time, less responsive, and less interactive.
+- What is client side routing and how it is different from server side routing?
+  - Client side routing is when the routing is handled by the client side code, and the server is only responsible for serving the initial HTML, CSS, and JavaScript. The client side code then handles the routing and rendering of the components. for example in react we use react-router-dom to handle client side routing.
+  - Server side routing is when the routing is handled by the server, and the server is responsible for serving the correct HTML, CSS, and JavaScript based on the URL.
+  - Client side routing is different from server side routing in that the routing is handled by the client side code, and the server is only responsible for serving the initial HTML, CSS, and JavaScript. The client side code then handles the routing and rendering of the components.
+
+- How to use React router?
+  - To use react router, you need to install the react-router-dom package using npm or yarn. Then you can import the BrowserRouter, Route, and Link components from the react-router-dom package and use them to define the routes and links in your application.
+  - Here is an example of how to use react router:
+  ```javascript
+    import React from 'react';
+    import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+    const Home = () => <h1>Home</h1>;
+    const About = () => <h1>About</h1>;
+    const Contact = () => <h1>Contact</h1>;
+
+    const App = () => (
+      <BrowserRouter>
+        <div>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+          </ul>
+
+          <hr />
+
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+        </div>
+      </BrowserRouter>
+    );
+
+    export default App;
+    ```
+- What is the difference between BrowserRouter and HashRouter?
+    - BrowserRouter uses the HTML5 history API to keep the UI in sync with the URL, while HashRouter uses the hash portion of the URL (i.e. window.location.hash) to keep the UI in sync with the URL.
+    - BrowserRouter is preferred when you have a server that will handle dynamic requests (knows how to respond to any possible URI), while HashRouter is preferred for static websites (where the server only responds to requests for files that it knows about).
+    - Here is an example of how to use BrowserRouter and HashRouter:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const BrowserRouterApp = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        const HashRouterApp = () => (
+        <HashRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </HashRouter>
+        );
+    
+        export default BrowserRouterApp;
+        export default HashRouterApp;
+        ```
+
+- What is the use of Switch in react router?
+    - The Switch component is used to render the first Route that matches the current location. This is useful for preventing multiple Routes from matching the same location, and for handling 404 errors.
+    - Here is an example of how to use the Switch component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+        const NotFound = () => <h1>404 Not Found</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact} />
+                <Route component={NotFound} />
+            </Switch>
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of Link component in react router?
+    - The Link component is used to create a hyperlink to a different route in your application. It is similar to the anchor tag (<a>) in HTML, but it is used to navigate between routes in a single-page application.
+    - Here is an example of how to use the Link component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of NavLink component in react router?
+    - The NavLink component is similar to the Link component, but it adds styling attributes to the rendered element when it matches the current URL. This is useful for creating navigation menus with active states.
+    - Here is an example of how to use the NavLink component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><NavLink exact to="/">Home</NavLink></li>
+                <li><NavLink to="/about">About</NavLink></li>
+                <li><NavLink to="/contact">Contact</NavLink></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of Redirect component in react router?
+    - The Redirect component is used to navigate to a different route in your application. It is similar to the window.location.replace() method in JavaScript, but it is used to navigate between routes in a single-page application.
+    - Here is an example of how to use the Redirect component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Redirect from="/old-path" to="/new-path" />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of withRouter HOC in react router?
+    - The withRouter higher-order component is used to pass the closest match of the current route's match object as a prop to the wrapped component. This is useful for accessing the match object in components that are not directly rendered by a Route component.
+    - Here is an example of how to use the withRouter higher-order component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link, withRouter } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default withRouter(App);
+    ```
+
+- What is the use of Prompt component in react router?
+    - The Prompt component is used to prompt the user before navigating away from the current route. This is useful for preventing the user from accidentally navigating away from a form with unsaved changes.
+    - Here is an example of how to use the Prompt component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link, Prompt } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Prompt message="Are you sure you want to leave?" />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of match object in react router?
+    - The match object contains information about how a <Route path> matched the URL. match objects contain the following properties:
+      - params: (object) Key/value pairs parsed from the URL corresponding to the dynamic segments of the path
+      - isExact: (boolean) true if the entire URL was matched (no trailing characters)
+      - path: (string) The path pattern used to match. Useful for building nested <Route>s
+      - url: (string) The matched portion of the URL. Useful for building nested <Link>s
+    - Here is an example of how to use the match object:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Home = ({ match }) => (
+        <div>
+            <h1>Home</h1>
+            <p>Matched URL: {match.url}</p>
+        </div>
+        );
+    
+        const About = ({ match }) => (
+        <div>
+            <h1>About</h1>
+            <p>Matched URL: {match.url}</p>
+        </div>
+        );
+    
+        const Contact = ({ match }) => (
+        <div>
+            <h1>Contact</h1>
+            <p>Matched URL: {match.url}</p>
+        </div>
+        );
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of location object in react router?
+    - The location object represents where the app is now, where you want it to go, or even where it was. It looks like this:
+      - pathname: (string) The path of the URL
+      - search: (string) The query string of the URL
+      - hash: (string) The hash of the URL
+      - state: (object) location-specific state that was provided to e.g. push(path, state) when this location was pushed onto the stack
+    - Here is an example of how to use the location object:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Home = ({ location }) => (
+        <div>
+            <h1>Home</h1>
+            <p>Current URL: {location.pathname}</p>
+        </div>
+        );
+    
+        const About = ({ location }) => (
+        <div>
+            <h1>About</h1>
+            <p>Current URL: {location.pathname}</p>
+        </div>
+        );
+    
+        const Contact = ({ location }) => (
+        <div>
+            <h1>Contact</h1>
+            <p>Current URL: {location.pathname}</p>
+        </div>
+        );
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of history object in react router?
+    - The history object allows you to manage and handle the navigation through the history stack. It looks like this:
+      - length: (number) The number of entries in the history stack
+      - action: (string) The current action (PUSH, REPLACE, or POP)
+      - location: (object) The current location
+      - push(path, [state]): (function) Pushes a new entry onto the history stack
+      - replace(path, [state]): (function) Replaces the current entry on the history stack
+      - go(n): (function) Moves the pointer in the history stack by n entries
+      - goBack(): (function) Moves the pointer back by one entry
+      - goForward(): (function) Moves the pointer forward by one entry
+      - block(prompt): (function) Prevents navigation
+    - Here is an example of how to use the history object:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Home = ({ history }) => (
+        <div>
+            <h1>Home</h1>
+            <button onClick={() => history.push('/about')}>Go to About</button>
+        </div>
+        );
+    
+        const About = ({ history }) => (
+        <div>
+            <h1>About</h1>
+            <button onClick={() => history.push('/contact')}>Go to Contact</button>
+        </div>
+        );
+    
+        const Contact = ({ history }) => (
+        <div>
+            <h1>Contact</h1>
+            <button onClick={() => history.goBack()}>Go back</button>
+        </div>
+        );
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+- What is the use of Route component in react router?
+    - The Route component is used to define the routes in your application. It takes a path and a component prop, and renders the component when the path matches the current URL.
+    - Here is an example of how to use the Route component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is the use of matchPath function in react router?
+    - The matchPath function is used to match a URL to a path pattern. It takes a URL and a path pattern as arguments, and returns an object with the following properties:
+      - path: (string) The path pattern used to match
+      - url: (string) The matched portion of the URL
+      - isExact: (boolean) true if the entire URL was matched (no trailing characters)
+      - params: (object) Key/value pairs parsed from the URL corresponding to the dynamic segments of the path
+    - Here is an example of how to use the matchPath function:
+    ```javascript
+        import React from 'react';
+        import { matchPath } from 'react-router';
+    
+        const match = matchPath('/users/123', {
+        path: '/users/:id',
+        exact: true,
+        strict: false
+        });
+    
+        console.log(match);
+    ```
+
+- What is the data fetching with Loader component in react router?
+    - The Loader component is used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - Here is an example of how to use the Loader component:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Loader = () => <h1>Loading...</h1>;
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => <h1>About</h1>;
+        const Contact = () => <h1>Contact</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={Loader} />
+            <Route path="/contact" component={Loader} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- Using data from the Loader in the Route component in react router?
+    - The Loader component can be used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - Here is an example of how to use the Loader component:
+    ```javascript
+        import React, { useState, useEffect } from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Loader = ({ component: Component, ...rest }) => {
+        const [loading, setLoading] = useState(true);
+        const [data, setData] = useState(null);
+    
+        useEffect(() => {
+            fetchData();
+        }, []);
+    
+        const fetchData = async () => {
+            const response = await fetch('https://api.example.com/data');
+            const data = await response.json();
+            setData(data);
+            setLoading(false);
+        };
+    
+        return loading ? <h1>Loading...</h1> : <Component {...rest} data={data} />;
+        };
+    
+        const Home = () => <h1>Home</h1>;
+        const About = ({ data }) => <h1>About: {data}</h1>;
+        const Contact = ({ data }) => <h1>Contact: {data}</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" render={props => <Loader {...props} component={About} />} />
+            <Route path="/contact" render={props => <Loader {...props} component={Contact} />} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- Extracting error data and throwing response in the Loader component in react router?
+    - The Loader component can be used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - Here is an example of how to use the Loader component:
+    ```javascript
+        import React, { useState, useEffect } from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Loader = ({ component: Component, ...rest }) => {
+        const [loading, setLoading] = useState(true);
+        const [data, setData] = useState(null);
+        const [error, setError] = useState(null);
+    
+        useEffect(() => {
+            fetchData();
+        }, []);
+    
+        const fetchData = async () => {
+            try {
+            const response = await fetch('https://api.example.com/data');
+            const data = await response.json();
+            setData(data);
+            setLoading(false);
+            } catch (error) {
+            setError(error);
+            setLoading(false);
+            }
+        };
+    
+        return loading ? <h1>Loading...</h1> : error ? <h1>Error: {error.message}</h1> : <Component {...rest} data={data} />;
+        };
+    
+        const Home = () => <h1>Home</h1>;
+        const About = ({ data }) => <h1>About: {data}</h1>;
+        const Contact = ({ data }) => <h1>Contact: {data}</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" render={props => <Loader {...props} component={About} />} />
+            <Route path="/contact" render={props => <Loader {...props} component={Contact} />} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- Dynamic Routes and Loader component in react router?
+    - The Loader component can be used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - Here is an example of how to use the Loader component:
+    ```javascript
+        import React, { useState, useEffect } from 'react';
+        import { BrowserRouter, Route, Link } from 'react-router-dom';
+    
+        const Loader = ({ component: Component, ...rest }) => {
+        const [loading, setLoading] = useState(true);
+        const [data, setData] = useState(null);
+        const [error, setError] = useState(null);
+    
+        useEffect(() => {
+            fetchData();
+        }, []);
+    
+        const fetchData = async () => {
+            try {
+            const response = await fetch('https://api.example.com/data');
+            const data = await response.json();
+            setData(data);
+            setLoading(false);
+            } catch (error) {
+            setError(error);
+            setLoading(false);
+            }
+        };
+    
+        return loading ? <h1>Loading...</h1> : error ? <h1>Error: {error.message}</h1> : <Component {...rest} data={data} />;
+        };
+    
+        const Home = () => <h1>Home</h1>;
+        const About = ({ match, data }) => <h1>About: {data}</h1>;
+        const Contact = ({ match, data }) => <h1>Contact: {data}</h1>;
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" render={props => <Loader {...props} component={About} />} />
+            <Route path="/contact" render={props => <Loader {...props} component={Contact} />} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- UseRouteLoaderData() Hook in react router?
+    - The useRouteLoaderData() hook can be used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - Here is an example of how to use the useRouteLoaderData() hook:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link, useRouteLoaderData } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => {
+        const data = useRouteLoaderData('https://api.example.com/data');
+        return <h1>About: {data}</h1>;
+        };
+        const Contact = () => {
+        const data = useRouteLoaderData('https://api.example.com/data');
+        return <h1>Contact: {data}</h1>;
+        };
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- What is action() function in react router?
+    - The action() function is used to get the current action (PUSH, REPLACE, or POP) from the history object. This is useful for determining the current action when handling navigation events.
+    - Here is an example of how to use the action() function:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link, useHistory } from 'react-router-dom';
+    
+        const Home = () => {
+        const history = useHistory();
+        const handleGoBack = () => {
+            if (history.action === 'POP') {
+            history.goBack();
+            } else {
+            history.push('/');
+            }
+        };
+    
+        return (
+            <div>
+            <h1>Home</h1>
+            <button onClick={handleGoBack}>Go back</button>
+            </div>
+        );
+        };
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- Working with useFetcher() Hook in react router?
+    - The useFetcher() hook is used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - Here is an example of how to use the useFetcher() hook:
+    ```javascript
+        import React from 'react';
+        import { BrowserRouter, Route, Link, useFetcher } from 'react-router-dom';
+    
+        const Home = () => <h1>Home</h1>;
+        const About = () => {
+        const { data, loading, error } = useFetcher('https://api.example.com/data');
+        return loading ? <h1>Loading...</h1> : error ? <h1>Error: {error.message}</h1> : <h1>About: {data}</h1>;
+        };
+        const Contact = () => {
+        const { data, loading, error } = useFetcher('https://api.example.com/data');
+        return loading ? <h1>Loading...</h1> : error ? <h1>Error: {error.message}</h1> : <h1>Contact: {data}</h1>;
+        };
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
+
+- Difference between useRouteLoaderData and useFetcher in react router?
+    - The useRouteLoaderData() hook is used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - The useFetcher() hook is used to fetch data from an API or server before rendering the component. This is useful for loading data asynchronously and displaying a loading indicator while the data is being fetched.
+    - The main difference between the two hooks is that useRouteLoaderData() is used to fetch data for a specific route, while useFetcher() is used to fetch data for any component.
+
+- What is use of differ() function in react router?
+    - The differ() function is used to compare two objects and return a new object with the differences. This is useful for determining the changes between two objects and updating the state accordingly.
+    - Here is an example of how to use the differ() function:
+    ```javascript
+        import React, { useState, useEffect } from 'react';
+        import { BrowserRouter, Route, Link, differ } from 'react-router-dom';
+    
+        const Home = () => {
+        const [data, setData] = useState(null);
+    
+        useEffect(() => {
+            fetchData();
+        }, []);
+    
+        const fetchData = async () => {
+            const response = await fetch('https://api.example.com/data');
+            const newData = await response.json();
+            setData(prevData => differ(prevData, newData));
+        };
+    
+        return <h1>Home: {data}</h1>;
+        };
+    
+        const App = () => (
+        <BrowserRouter>
+            <div>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+            </ul>
+    
+            <hr />
+    
+            <Route exact path="/" component={Home} />
+            </div>
+        </BrowserRouter>
+        );
+    
+        export default App;
+    ```
